@@ -1,34 +1,44 @@
 #include "SevSeg.h"
 
+SevSeg sev;
 SevSeg sevseg;
 
-int interval1 = 1000;
-unsigned long previousMillis1 = 0;
+unsigned long antesMillis1 = 0;
+int intervalo1 = 1000;
 int x = 0;
+int y = 0;
 int unseg = 0;
-int decseg = 5;
-int unmin = 9;
-int decmin = 0;
-int horas = 0;
-int dechoras = 0;
+int decseg = 1;
+int unmin = 8;
+int decmin = 5;
+int horas = 3;
+int dechoras = 2;
 
 void setup()
 {
-    byte numDigits = 6;
-    byte digitPins[] = {2, 3, 4, 5};                   // Pins para los 4 digitos
-    byte segmentPins[] = {6, 7, 8, 9, 10, 11, 12, 13}; // Pins para los leds del display
+    byte numeroDigitos = 5;
+    byte digitosPins[] = {51, 5, 4, 3, 2};               // Pins para los 4 digitos del display para los minutos y segundos
+    byte segmentosPins[] = {6, 7, 8, 9, 10, 11, 12, 13}; // Pins para los leds del display
 
-    sevseg.begin(COMMON_CATHODE, numDigits, digitPins, segmentPins); // iniciar la biblioteca
+    byte numeroDigitos2 = 2;
+    byte digitosPins2[] = {23, 22};                           // Pins para los 2 digitos del display para las horas
+    byte segmentosPins2[] = {24, 25, 26, 27, 28, 29, 30, 31}; // Pins para los leds del display
+
+    sevseg.begin(COMMON_CATHODE, numeroDigitos2, digitosPins2, segmentosPins2); // iniciar
+    sev.begin(COMMON_CATHODE, numeroDigitos, digitosPins, segmentosPins);       // iniciar
 }
 
 void loop()
 {
-    x = unseg + decseg * 10 + unmin * 100 + decmin * 1000 + horas * 10000 + dechoras * 100000; // valor de hora de inicio
-    sevseg.setNumber(x, 2);
+    x = unseg + decseg * 10 + unmin * 100 + decmin * 1000 + 10000; // valor de hora de inicio
+    y = horas + dechoras * 10;
+    sev.setNumber(x, 2);
+    sevseg.setNumber(y, 0);
+    sev.refreshDisplay();
     sevseg.refreshDisplay();
-    unsigned long currentMillis = millis();
+    unsigned long actualMillis = millis();
 
-    if ((unsigned long)(currentMillis - previousMillis1) >= interval1) // reiniciar el conteo
+    if ((unsigned long)(actualMillis - antesMillis1) >= intervalo1) // reiniciar el conteo
     {
         unseg = unseg + 1;
 
@@ -62,10 +72,20 @@ void loop()
             dechoras = dechoras + 1;
         }
 
-        if (dechoras == 2)
+        if (dechoras == 3)
         {
             dechoras = 0;
         }
-        previousMillis1 = currentMillis;
+
+        if (dechoras == 2 & horas == 4)
+        {
+            unseg = 0;
+            decseg = 0;
+            unmin = 0;
+            decmin = 0;
+            horas = 0;
+            dechoras = 0;
+        }
+        antesMillis1 = actualMillis;
     }
 }
