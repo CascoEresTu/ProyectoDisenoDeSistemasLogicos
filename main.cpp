@@ -8,20 +8,20 @@ int intervalo1 = 1000;
 int x = 0;
 int y = 0;
 int unseg = 0;
-int decseg = 1;
-int unmin = 8;
-int decmin = 5;
-int horas = 3;
-int dechoras = 2;
-
+int decseg = 0;
+int unmin = 0;
+int decmin = 0;
+int horas = 0;
+int dechoras = 0;
+ 
 void setup()
 {
     byte numeroDigitos = 5;
-    byte digitosPins[] = {51, 5, 4, 3, 2};               // Pins para los 4 digitos del display para los minutos y segundos
+    byte digitosPins[] = {51, 5, 4, 3, 2};// Pins para los 4 digitos del display para los minutos y segundos
     byte segmentosPins[] = {6, 7, 8, 9, 10, 11, 12, 13}; // Pins para los leds del display
 
     byte numeroDigitos2 = 2;
-    byte digitosPins2[] = {23, 22};                           // Pins para los 2 digitos del display para las horas
+    byte digitosPins2[] = {23, 22};// Pins para los 2 digitos del display para las horas
     byte segmentosPins2[] = {24, 25, 26, 27, 28, 29, 30, 31}; // Pins para los leds del display
 
     sevseg.begin(COMMON_CATHODE, numeroDigitos2, digitosPins2, segmentosPins2); // iniciar

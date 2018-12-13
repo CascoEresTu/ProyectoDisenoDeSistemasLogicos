@@ -23,7 +23,6 @@ void setup()
 
 void loop()
 {
-
     unsigned long currentMillis = millis();
 
     // How much time has passed, accounting for rollover with subtraction!
@@ -37,25 +36,19 @@ void loop()
     //sevseg.refreshDisplay(); // Must run repeatedly
 }
 
-void numero(int x, int primero, int segundo)
-{
+void numero(int x, int primero, int segundo){
 
-    while (true)
-    {
-        if (segundo == 9)
-        {
+    while (true){
+        if (segundo == 9){
             segundo == 0;
         }
 
-        for (segundo < 6; primero++;)
-        {
+        for (segundo < 6; primero++;){
 
-            if (primero == 5)
-            {
+            if (primero == 5){
                 primero = 0;
             }
-            for (primero < 10; primero++;)
-            {
+            for (primero < 10; primero++;){
                 x = 2000 + 400 + segundo * 10 + primero;
 
                 // sevseg.setNumber(temp);
