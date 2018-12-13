@@ -1,4 +1,4 @@
-# Proyecto Diseno De SistemasLogicos
+# Proyecto de Diseno De Sistemas Logicos
 
 
 
