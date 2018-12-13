@@ -1,1 +1,5 @@
-# ProyectoDisenoDeSistemasLogicos
+# Proyecto Diseno De SistemasLogicos
+
+
+
+
